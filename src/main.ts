@@ -1,20 +1,14 @@
-import Elysia, { Context } from 'elysia';  // Import đúng type Context và NextFunction
+import Elysia, { Context } from "elysia";
 
 const app = new Elysia();
 const PORT = 3000;
 
-
 app.get("/", (ctx: Context) => {
-  return "Hello, World!";
+  return "hello";
 });
-
-// Route POST
-app.post("/data", (ctx: Context) => {
-  const body = ctx.body;
-  return `Received data: ${body}`;
+app.get("/test", (ctx: Context) => {
+  return "chaoem!";
 });
-
-// Lắng nghe server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
