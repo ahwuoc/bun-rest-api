@@ -1,14 +1,12 @@
-import Elysia, { Context } from "elysia";
-
-const app = new Elysia();
+import "reflect-metadata";
+import ContainerDI from "./core/container.di";
+import UserController from "./controllers/user.controler";
+import AppManger from "./core/app.manager";
 const PORT = 3000;
+ContainerDI.registerServices(UserController);
+ContainerDI.getServices(UserController);
 
-app.get("/", (ctx: Context) => {
-  return "hello";
-});
-app.get("/test", (ctx: Context) => {
-  return "chaoem!";
-});
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+
+AppManger.listen(PORT, () => {
+  console.log("🚀 Server running on port", PORT);
 });

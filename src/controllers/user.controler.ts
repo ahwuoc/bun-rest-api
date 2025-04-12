@@ -1,4 +1,12 @@
-import { Controller } from "../core/dependencies/class.decorator";
+import { ZeController } from "../core/dependencies/class.decorator";
+import { ZePOST } from "../core/dependencies/method.decorator";
+import userService from "../services/user.service";
 
-@Controller("/users")
-export default class UserController {}
+@ZeController("/users")
+export default class UserController {
+  constructor(private userServices: userService) {}
+  @ZePOST()
+  getAllUsers() {
+    return "All users";
+  }
+}

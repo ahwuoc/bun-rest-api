@@ -1,4 +1,4 @@
-# MiniFW: A Lightweight Web Framework with Elysia, Bun.js, and DI
+# Zephyra Framewrok: A Lightweight Web Framework with Elysia, Bun.js, and DI
 
 MiniFW là một framework Backend web siêu nhẹ, kết hợp giữa **Elysia**, **Bun.js**, và **Dependency Injection (DI)** sử dụng decorators để xây dựng ứng dụng web hiệu suất cao. Framework này tối ưu cho việc phát triển API với overhead tối thiểu, dễ dàng mở rộng và dễ duy trì.
 
