@@ -1,37 +1,20 @@
-import express from "express";
-import AppDataSource from "./ormconfig";
-import userRoutes from "@routers/UserRouter";
-import dotenv from "dotenv";
+import Elysia, { Context } from 'elysia';  // Import đúng type Context và NextFunction
 
-dotenv.config();
+const app = new Elysia();
+const PORT = 3000;
 
-const app = express();
-app.use(express.json());
-app.use("/api", userRoutes);
 
-const PORT = process.env.PORT || 3000;
+app.get("/", (ctx: Context) => {
+  return "Hello, World!";
+});
 
-async function startServer() {
-    try {   
-        await AppDataSource.initialize();
-        console.log("📌 Database connected successfully!");
-        app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
-    } catch (error: any) {
-        switch (error.code) {
-            case "ER_ACCESS_DENIED_ERROR":
-                console.error("🔴 Lỗi: Sai tên đăng nhập hoặc mật khẩu MySQL.");
-                break;
-            case "ER_BAD_DB_ERROR":
-                console.error("🔴 Lỗi: Database không tồn tại. Hãy kiểm tra lại biến DB_NAME.");
-                break;
-            case "ECONNREFUSED":
-                console.error("🔴 Lỗi: Không thể kết nối đến MySQL. Hãy kiểm tra xem MySQL đã chạy chưa.");
-                break;
-            default:
-                console.error("🔴 Lỗi không xác định:", error);
-                break;
-        }
-    }
-}
+// Route POST
+app.post("/data", (ctx: Context) => {
+  const body = ctx.body;
+  return `Received data: ${body}`;
+});
 
-startServer();
+// Lắng nghe server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
