@@ -1,6 +1,8 @@
-export const ZeController = (path: string): ClassDecorator => {
-  return (target: any) => {};
-};
+import { METADATA_KEYS } from "../utils/types";
+import { setMetadata } from "./metadata";
+
+export const ZeController = (path: string): ClassDecorator =>
+  setMetadata(METADATA_KEYS.method_metadata_key, path);
 export const ZeInjectTable = (): ClassDecorator => {
   return (target: any) => {};
 };

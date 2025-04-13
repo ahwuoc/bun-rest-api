@@ -1,4 +1,4 @@
-import { Constructor } from "./utils/types";
+import { Constructor } from "../utils/types";
 
 export default class ContainerDI {
   private static services = new Map<any, Constructor<any>>();
@@ -24,7 +24,6 @@ export default class ContainerDI {
       ContainerDI.registerServices(params);
       return ContainerDI.getServices(params);
     });
-    // Cache the instance for future use
     const instance = new service(...dependencies);
     ContainerDI.register.set(service.name, instance);
     return instance;
